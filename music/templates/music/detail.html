@@ -5,8 +5,20 @@
 <h3>Album name: {{album.album_title}}</h3>
 <h3>Genre: {{album.genre}}</h3>
 
-<ul>
+{% if error_message %}
+    <p><strong>{{error_message}}</strong></p>
+{% endif %}
+
+<form action="{% url 'music:favorite' album.id %}" method="post">
+    {% csrf_token %}
     {% for song in album.song_set.all %}
-        <li>{{song.song_title}} - {{song.file_type}}</li>
+        <input type="radio" id="song{{forloop.counter}}" name="song" value="{{song.id}}" />
+    <label for="song{{forloop.counter}}">
+        {{song.song_title}}
+        {% if song.is_favorite %}
+           <img src="http://www.consultsarath.com/CSStatic/images/star2.png">
+        {% endif %}
+    </label><br>
     {% endfor %}
-</ul>
+<input type="submit" name="Favorite" value="Favorite">
+</form>
