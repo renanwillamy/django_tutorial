@@ -1,0 +1,7 @@
+<keymap version="1" name="NetBeans copy" parent="NetBeans 6.5">
+  <action id="FindInPath" />
+  <action id="ReformatCode">
+    <keyboard-shortcut first-keystroke="shift alt f" />
+    <keyboard-shortcut first-keystroke="shift ctrl f" />
+  </action>
+</keymap>
