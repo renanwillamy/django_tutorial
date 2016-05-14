@@ -2,16 +2,26 @@
 {% block body %}
 {% if all_albums %}
 <H2>Here are all my Albums!</H2>
-<ul>
+<div class="row">
     {% for album in all_albums %}
 
-    <li>
-        <a href="{% url 'music:detail' album.id %}">{{album.album_title}}</a>
+        <!--comeca aqui-->
 
-    </li>
+      <div class="col-sm-4 col-md-4">
+        <div class="thumbnail">
+          <img src="{{album.album_logo}}" height="320" width="320">
+          <div class="caption">
+            <h3><a href="{% url 'music:detail' album.id %}">{{album.album_title}}</a></h3>
+            <p>{{album.artist}}</p>
+            <p><a href="#" class="btn btn-primary" role="button">View Details</a>
+                <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+             <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></a></p>
+          </div>
+        </div>
+      </div>
     <!--fim-->
     {% endfor %}
-</ul>
+  </div>
 {% else %}
 <h3>You dont have any album</h3>
 {% endif%}
