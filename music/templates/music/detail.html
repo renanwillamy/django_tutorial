@@ -1,15 +1,45 @@
 {% extends 'music/base.html' %}
 {% block title%}Album detail{% endblock %}
 {% block body %}
-<h1>Album detail!</h1>
 
-<img src="{{album.album_logo}}">
+<div class="row">
+    <div class="col-sm-3">
+        <div class="thumbnail">
+            <h1>Album detail!</h1>
+            <img src="{{album.album_logo.url}}">
+            <h3>Album name: {{album.album_title}}</h3>
+            <h3>Genre: {{album.genre}}</h3>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <p><a href="#" role="button" class="btn btn-primary">View All</a>&nbsp;&nbsp;<a href="#">Add New Song</a></p>
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix"><h3>All Songs</h3></div>
+            <div class="panel-body">
+                <!-- Table -->
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Audio File</th>
+                        <th>Favorite</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-<h3>Album name: {{album.album_title}}</h3>
-<h3>Genre: {{album.genre}}</h3>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
 {% if error_message %}
-    <p><strong>{{error_message}}</strong></p>
+<p><strong>{{error_message}}</strong></p>
 {% endif %}
+
 
 {% endblock %}

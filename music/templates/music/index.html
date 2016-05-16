@@ -5,23 +5,33 @@
 <div class="row">
     {% for album in all_albums %}
 
-        <!--comeca aqui-->
+    <!--comeca aqui-->
 
-      <div class="col-sm-4 col-md-4">
+    <div class="col-sm-4 col-md-4">
         <div class="thumbnail">
-          <img src="{{album.album_logo}}" height="320" width="320">
-          <div class="caption">
-            <h3><a href="{% url 'music:detail' album.id %}">{{album.album_title}}</a></h3>
-            <p>{{album.artist}}</p>
-            <p><a href="#" class="btn btn-primary" role="button">View Details</a>
-                <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-             <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></a></p>
-          </div>
+            <img src="{{album.album_logo.url}}" height="320" width="320">
+            <div class="caption">
+                <h3>{{album.album_title}}</h3>
+                <p>{{album.artist}}</p>
+                <!--View Details-->
+                <a href="{% url 'music:detail' album.id %}" class="btn btn-primary btn-sm" role="button">View
+                    Details</a>
+                <!-- Delete Album-->
+                <form action="{% url 'music:album-delete' album.id %}" method="post" style="display : inline;">
+                    {% csrf_token %}
+                    <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-trash"
+                                                                 aria-hidden="true"></span></button>
+                    <input type="hidden" name="album_id" value="{{album.id}}">
+                </form>
+                <a href="#" class="btn btn-default btn-sm" role="button"><span
+                        class="glyphicon glyphicon-star-empty"
+                        aria-hidden="true"></span></a>
+            </div>
         </div>
-      </div>
+    </div>
     <!--fim-->
     {% endfor %}
-  </div>
+</div>
 {% else %}
 <h3>You dont have any album</h3>
 {% endif%}
